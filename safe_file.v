@@ -5,7 +5,7 @@ import os
 
 pub struct SafeFile {
 mut:
-	mutex_map SafeMap[sync.RwMutex] = SafeMap.new[sync.RwMutex]()
+	mutex_map SafeStructMap[sync.RwMutex] = SafeStructMap.new[sync.RwMutex]()
 }
 
 pub fn (mut safe_file SafeFile) append(path string, lines ...string) ! {
