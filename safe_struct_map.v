@@ -39,6 +39,18 @@ pub fn (mut m SafeStructMap[T]) keys() []string {
     return m.data.keys()
 }
 
+pub fn (mut m SafeStructMap[T]) remove(key string) ?&T {
+    m.mu.lock()
+    defer { m.mu.unlock() }
+    if key in m.data {
+        value := m.data[key]
+        m.data.delete(key)
+        return value
+    } else {
+        return none
+    }
+}
+
 // 写操作（独占锁）
 pub fn (mut m SafeStructMap[T]) set(key string, value &T) {
     m.mu.lock()

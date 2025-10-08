@@ -25,13 +25,13 @@ pub fn (mut safe_file SafeFile) read_by_line[T](path string, process fn(string) 
 	mutex.rlock()
 	defer { mutex.runlock() }
 
-	mut file := os.open_file(path, "r")!
+	mut file := os.open_file(path, "rb")!
 	defer {
         file.close()
     }
 
 	mut result := []T{}
-	buff_size := 4096  // 缓冲区大小
+	buff_size := 4096
 	mut buffer := []u8{len: buff_size}
     mut data := []u8{}
 	for {
