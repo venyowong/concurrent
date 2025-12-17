@@ -19,7 +19,7 @@ fn test_struct_map() {
 		id: 1
 		name: "first"
 	}
-	m.set("1", &user)
+	m.set("1", user)
 	println(m)
 	user.name = "second"
 	println(m)
@@ -29,7 +29,7 @@ fn test_struct_map() {
 			name: "second"
 		}
 	})
-	println(*u2)
+	println(u2)
 	println(m)
 }
 

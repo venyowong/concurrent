@@ -43,7 +43,7 @@ pub fn (mut m SafeStructMap[T]) remove(key string) ?&T {
     m.mu.lock()
     defer { m.mu.unlock() }
     if key in m.data {
-        value := unsafe{m.data[key]}
+        value := unsafe{ m.data[key] }
         m.data.delete(key)
         return value
     } else {
